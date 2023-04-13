@@ -1,0 +1,22 @@
+<h1>Movies List</h1>
+
+<table>
+  <thead>
+  <td>title</td>
+  <td>blurb</td>
+  <td>date released</td>
+  <td>country of origin</td>
+  <td>showing start</td>
+  <td>showing end</td>
+  </thead>
+  <% @movies.each do |movie| %>
+    <tr>
+      <td><%= movie.title %></td>
+      <td><%= movie.blurb %></td>
+      <td><%= movie.date_released %></td>
+      <td><%= movie.country_of_origin %></td>
+      <td><%= movie.showing_start %></td>
+      <td><%= movie.showing_end %></td>
+    </tr>
+  <% end %>
+</table>

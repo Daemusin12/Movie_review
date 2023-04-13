@@ -1,0 +1,34 @@
+<%= form_with model: movie do |form| %>
+  <% if movie.errors.any? %>
+    <ul>
+      <% movie.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+  <div>
+    <%= form.label :blurb %>
+    <%= form.text_field :blurb %>
+  </div>
+  <div>
+    <%= form.label :date_released %>
+    <%= form.date_field :date_released %>
+  </div>
+  <div>
+    <%= form.label :country_of_origin %>
+    <%= form.text_field :country_of_origin %>
+  </div>
+  <div>
+    <%= form.label :showing_start %>
+    <%= form.date_field :showing_start %>
+  </div>
+  <div>
+    <%= form.label :showing_end %>
+    <%= form.date_field :showing_end %>
+  </div>
+  <%= form.submit %>
+<% end %>
