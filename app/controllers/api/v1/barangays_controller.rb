@@ -6,11 +6,11 @@ class Api::V1::BarangaysController < ApplicationController
                 else
                   Address::Barangay.all
                 end
-    render json: barangays
+    render json: barangays, each_serializer: BarangaySerializer
   end
 
   def show
     barangay = Address::Barangay.find(params[:id])
-    render json: barangay
+    render json: barangay, serializer: BarangaySerializer
   end
 end
