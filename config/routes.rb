@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
   resources :movies
+  namespace :api do
+    namespace :v1 do
+      resources :regions, only: %i[index show], defaults: { format: :json }
+    end
+  end
 end
