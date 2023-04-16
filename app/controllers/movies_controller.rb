@@ -4,7 +4,7 @@ class MoviesController < ApplicationController
   before_action :validate_movie_owner, only: [:edit, :update, :destroy]
 
   def index
-    @movies = Movie.includes(:user, :genres).all
+    @movies = Movie.includes(:user, :genres).page(params[:page]).per(5)
   end
 
   def new
