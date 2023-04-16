@@ -30,7 +30,7 @@
     <%= f.label :region_id %>
     <%= f.collection_select :address_region_id,
                             Address::Region.all, :id, :name,
-                            { prompt: 'Please select region' },
+                            { prompt: 'Please select region' }, class: 'select2',
                             data: { location_target: 'selectedRegionId', action: 'change->location#fetchProvinces' } %>
   </div>
 
@@ -38,7 +38,7 @@
     <%= f.label :province_id %>
     <%= f.collection_select :address_province_id,
                             [], nil, nil,
-                            { prompt: 'Please select province' },
+                            { prompt: 'Please select province' }, class: 'select2',
                             data: { location_target: 'selectedProvinceId', action: 'change->location#fetchCities' } %>
   </div>
 
@@ -46,7 +46,7 @@
     <%= f.label :city_id %>
     <%= f.collection_select :address_city_id,
                             [], nil, nil,
-                            { prompt: 'Please select city' },
+                            { prompt: 'Please select city' }, class: 'select2',
                             data: { location_target: 'selectedCityId', action: 'change->location#fetchBarangays' } %>
   </div>
 
@@ -54,7 +54,7 @@
     <%= f.label :barangay_id %>
     <%= f.collection_select :address_barangay_id,
                             [], nil, nil,
-                            { prompt: 'Please select barangay' },
+                            { prompt: 'Please select barangay' }, class: 'select2',
                             data: { location_target: 'selectedBarangayId' } %>
   </div>
 
