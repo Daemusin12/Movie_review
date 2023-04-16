@@ -10,4 +10,6 @@ class User < ApplicationRecord
   validates :address_city_id, presence: true
   validates :address_barangay_id, presence: true
   validates :address, presence: true
+
+  has_many :movies
 end

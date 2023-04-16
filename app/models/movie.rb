@@ -5,4 +5,6 @@ class Movie < ApplicationRecord
   validates :country_of_origin, presence: true
   validates :showing_start, presence: true
   validates :showing_end, presence: true
+
+  belongs_to :user
 end
