@@ -1,9 +1,11 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!, except: :index
   before_action :set_movie
   before_action :set_review, only: [:edit, :update, :destroy]
+  before_action :validate_review_owner, only: [:edit, :update, :destroy]
 
   def index
-    @reviews = @movie.reviews
+    @reviews = @movie.reviews.includes(:user)
   end
 
   def new
@@ -12,6 +14,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = @movie.reviews.build(review_params)
+    @review.user = current_user
     if @review.save
       flash[:notice] = 'Review created successfully'
       redirect_to movie_reviews_path(@movie)
@@ -49,6 +52,13 @@ class ReviewsController < ApplicationController
 
   def set_review
     @review = @movie.reviews.find(params[:id])
+  end
+
+  def validate_review_owner
+    unless @review.user == current_user
+      flash[:notice] = 'the review is not belongs to you'
+      redirect_to movie_reviews_path(@movie)
+    end
   end
 
 end
