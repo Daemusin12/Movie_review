@@ -30,5 +30,9 @@
     <%= form.label :showing_end %>
     <%= form.date_field :showing_end %>
   </div>
+  <div>
+    <%= form.label :genre %>
+    <%= form.select :genre_ids, Genre.all.map { |genre| [genre.name, genre.id]}, {}, data: { placeholder: 'Please select genre' }, multiple: true,  class: 'select2 w-25' %>
+  </div>
   <%= form.submit %>
 <% end %>

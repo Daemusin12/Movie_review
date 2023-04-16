@@ -4,6 +4,7 @@
   <thead>
   <td>title</td>
   <td>blurb</td>
+  <td>genre</td
   <td>date released</td>
   <td>country of origin</td>
   <td>showing start</td>
@@ -14,6 +15,7 @@
     <tr>
       <td><%= movie.title %></td>
       <td><%= movie.blurb %></td>
+      <td><%= movie.genres.pluck(:name).join(',') %></td>
       <td><%= movie.date_released %></td>
       <td><%= movie.country_of_origin %></td>
       <td><%= movie.showing_start %></td>
