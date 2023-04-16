@@ -1,8 +1,10 @@
 class MoviesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  before_action :validate_movie_owner, only: [:edit, :update, :destroy]
 
   def index
-    @movies = Movie.all
+    @movies = Movie.includes(:user).all
   end
 
   def new
@@ -11,6 +13,7 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(movie_params)
+    @movie.user = current_user
     if @movie.save
       redirect_to movies_path
     else
@@ -36,6 +39,13 @@ class MoviesController < ApplicationController
   end
 
   private
+
+  def validate_movie_owner
+    unless @movie.user == current_user
+      flash[:notice] = 'the post not belongs to you'
+      redirect_to movies_path
+    end
+  end
 
   def set_movie
     @movie = Movie.find(params[:id])
