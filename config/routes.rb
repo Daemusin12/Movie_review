@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :movies
+  resources :movies do
+    resources :reviews, except: :show
+  end
   namespace :api do
     namespace :v1 do
       resources :regions, only: %i[index show], defaults: { format: :json } do
