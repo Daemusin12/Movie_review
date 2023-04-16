@@ -1,0 +1,8 @@
+<h1>Title <%= @movie.title %></h1>
+<h2>Comments</h2>
+<ul>
+  <% @reviews.each do |review| %>
+    <li><%= review.content %></li>
+    <li><%= review.rating %></li>
+  <% end %>
+</ul>

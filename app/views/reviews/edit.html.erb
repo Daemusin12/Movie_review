@@ -1,0 +1,3 @@
+<h1>Title: <%= @movie.title %></h1>
+<h2>Edit Review ID: <%= @review.id %></h2>
+<%= render partial: 'form', locals: { movie: @movie, review: @review, path: movie_review_path(@movie, @review) } %>
