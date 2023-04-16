@@ -4,7 +4,7 @@ class MoviesController < ApplicationController
   before_action :validate_movie_owner, only: [:edit, :update, :destroy]
 
   def index
-    @movies = Movie.includes(:user).all
+    @movies = Movie.includes(:user, :genres).all
   end
 
   def new
@@ -52,6 +52,6 @@ class MoviesController < ApplicationController
   end
 
  def movie_params
-    params.require(:movie).permit(:title, :blurb, :date_released, :country_of_origin, :showing_start, :showing_end)
+    params.require(:movie).permit(:title, :blurb, :date_released, :country_of_origin, :showing_start, :showing_end, genre_ids: [])
  end
 end
