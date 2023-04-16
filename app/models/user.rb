@@ -12,4 +12,5 @@ class User < ApplicationRecord
   validates :address, presence: true
 
   has_many :movies
+  has_many :reviews
 end
