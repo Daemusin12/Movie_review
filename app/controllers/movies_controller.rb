@@ -7,6 +7,11 @@ class MoviesController < ApplicationController
     @movies = Movie.includes(:user, :genres).page(params[:page]).per(5)
   end
 
+  def shorturl
+    @movie = Movie.find_by(short_url: params[:short_url])
+    redirect_to movie_path(@movie.id)
+  end
+
   def new
     @movie = Movie.new
   end
@@ -14,6 +19,7 @@ class MoviesController < ApplicationController
   def create
     @movie = Movie.new(movie_params)
     @movie.user = current_user
+    @movie.short_url_generator
     if @movie.save
       redirect_to movies_path
     else
