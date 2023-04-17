@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
   before_action :validate_review_owner, only: [:edit, :update, :destroy]
 
   def index
-    @reviews = @movie.reviews.includes(:user)
+    @reviews = @movie.reviews.includes(:user).top_ratings
   end
 
   def new
