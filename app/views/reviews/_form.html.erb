@@ -10,9 +10,11 @@
     <%= form.label :content %>
     <%= form.text_field :content %>
   </div>
-  <div>
-    <%= form.label :rating %>
-    <%= form.text_field :rating %>
-  </div>
+  <% if current_page?(:controller => 'reviews', :action => 'new') %>
+    <div>
+      <%= form.label :rating %>
+      <%= form.text_field :rating %>
+    </div>
+  <% end %>
   <%= form.submit %>
 <% end %>
