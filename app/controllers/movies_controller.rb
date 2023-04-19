@@ -4,7 +4,12 @@ class MoviesController < ApplicationController
   before_action :validate_movie_owner, only: [:edit, :update, :destroy]
 
   def index
-    @movies = Movie.includes(:user, :genres).page(params[:page]).per(5)
+    if params.has_key?(:genre)
+      @select_genre = params[:genre][:ids]
+    else
+      @select_genre = Genre.ids
+    end
+    @movies = Movie.includes(:user, :genres).filtered(@select_genre).page(params[:page]).per(5)
   end
 
   def shorturl

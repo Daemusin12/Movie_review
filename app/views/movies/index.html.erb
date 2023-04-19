@@ -1,5 +1,10 @@
 <h1>Movies List</h1>
 
+<%=form_tag movies_path, :method => 'get' do %>
+  <%=collection_check_boxes(:genre, :ids, Genre.order(:name), :id, :name, {multiple: true, checked: @select_genre} )%>
+  <%=submit_tag "Search", :style => "float:left;"%>
+<%end %>
+
 <table>
   <thead>
   <td>title</td>
