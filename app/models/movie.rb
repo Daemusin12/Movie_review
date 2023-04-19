@@ -23,4 +23,6 @@ class Movie < ApplicationRecord
     end
     self.short_url = url
   end
+
+  scope :filtered, ->(selected_genres) { where({id: [MovieGenreShip.filter_by_genre(selected_genres)] }) }
 end
